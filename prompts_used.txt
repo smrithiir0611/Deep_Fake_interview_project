@@ -1,0 +1,1 @@
+Prompt: "Write a deep fake style interview script based on my basketball dataset results (WNBA 2018–2022), including the most improved teams, the top three teams by total wins, and the strongest positive and negative correlations with win percentage."

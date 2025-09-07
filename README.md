@@ -22,7 +22,7 @@ This project is based on my earlier basketball dataset analysis (WNBA 2018–202
 - `prompts_used.txt` → prompt I used to generate the script  
 - `analyse_basketball.py` → Python analysis script  
 - `most_improved.csv`, `top3_total_wins.csv`, `corr_with_win_percent.csv` → output data  
-- `Final_Output.mp3` → audio interview (interviewer + coach)  
+- `Final_output.mp3` → audio interview (interviewer + coach)  
 - `README.md` → this file
 
 ## Audio File

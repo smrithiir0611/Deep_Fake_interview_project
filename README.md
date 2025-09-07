@@ -1,4 +1,4 @@
-# Task_06_Deep_Fake
+# Deep_Fake_interview_project
 
 ## Overview
 This project is based on my earlier basketball dataset analysis (WNBA 2018–2022) and I turned it into a “deep fake” style interview. The main focus is on the process: analyzing the data, creating a narrative, and then presenting the results in an interview format.
@@ -22,5 +22,5 @@ This project is based on my earlier basketball dataset analysis (WNBA 2018–202
 - `prompts_used.txt` → prompt I used to generate the script  
 - `analyse_basketball.py` → Python analysis script  
 - `most_improved.csv`, `top3_total_wins.csv`, `corr_with_win_percent.csv` → output data  
-- `final_output.mp3` → audio interview (interviewer + coach)  
+- `Final_Output.mp3` → audio interview (interviewer + coach)  
 - `README.md` → this file

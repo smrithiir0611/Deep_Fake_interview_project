@@ -1,13 +1,13 @@
 import pandas as pd
 
-CSV_FILE = "teamstats.csv"   # <- change if your file has a different name
+CSV_FILE = "teamstats.csv"   
 BASE_YEAR = 2018
 END_YEAR  = 2022
 
-# --- Load ---
+# Loading the csv file
 df = pd.read_csv(CSV_FILE)
 
-# --- Sanity checks: make sure required cols exist (using your exact names) ---
+# checking for the required column names
 required = {
     "season","team","gp","w","l","win_percent","ppg","fgm","fga","fg_percent",
     "threepoint_fgm","threepoint_fga","threepoint_fg_percent","ftm","fta","ft_percent",
@@ -17,7 +17,7 @@ missing = [c for c in ["season","team","gp","w","win_percent"] if c not in df.co
 if missing:
     raise ValueError(f"CSV is missing required columns: {missing}")
 
-# --- If there are duplicate rows per team-season, collapse to team-season level ---
+# if a team has duplicate rows in a season, we are merging them by adding totals and averaging percentages
 agg_funcs = {
     "gp":"sum","w":"sum","l":"sum","win_percent":"mean","ppg":"mean","fgm":"mean","fga":"mean","fg_percent":"mean",
     "threepoint_fgm":"mean","threepoint_fga":"mean","threepoint_fg_percent":"mean","ftm":"mean","fta":"mean","ft_percent":"mean",
@@ -28,7 +28,7 @@ team_year = (
       .agg(agg_funcs)
 )
 
-# --- 1) Improvement from 2018 -> 2022 using win_percent ---
+# Analysing Improvement from 2018 -> 2022 using win_percent
 base = team_year[team_year["season"] == BASE_YEAR][["team","win_percent"]].rename(columns={"win_percent": f"winpct_{BASE_YEAR}"})
 end  = team_year[team_year["season"] == END_YEAR][["team","win_percent"]].rename(columns={"win_percent": f"winpct_{END_YEAR}"})
 improve = (
@@ -37,21 +37,20 @@ improve = (
        .sort_values("improvement", ascending=False, ignore_index=True)
 )
 
-# --- 2) Top 3 teams by total wins across all years ---
+# Finding Top 3 teams by total wins across all years
 total_wins = (
     team_year.groupby("team", as_index=False)["w"].sum()
              .rename(columns={"w":"total_wins"})
              .sort_values("total_wins", ascending=False, ignore_index=True)
 )
 
-# --- 3) Correlations with WIN% ---
-# Correlate win_percent with other numeric stats (exclude identifiers & win_percent itself)
+# finding out correlations of win_percent with numeric stats (excluding IDs and itself)
 num = team_year.select_dtypes("number").copy()
 if "season" in num.columns:   num = num.drop(columns=["season"])
 pos_corr = num.corr(numeric_only=True)["win_percent"].drop(labels=["win_percent"], errors="ignore").sort_values(ascending=False)
 neg_corr = pos_corr.sort_values(ascending=True)
 
-# --- PRINT ANSWERS YOU NEED ---
+# For displaying the results 
 print("\n=== MOST IMPROVED (win% change from 2018 to 2022) ===")
 if not improve.empty:
     print(improve.head(10).to_string(index=False))
@@ -74,7 +73,7 @@ print(pos_corr.head(5).to_string())
 print("\n=== STRONGEST NEGATIVE CORRELATIONS WITH WIN% ===")
 print(neg_corr.head(5).to_string())
 
-# --- Save CSVs for your README/repo ---
+# saving results as CSVs for the repo/README
 improve.to_csv("most_improved.csv", index=False)
 total_wins.head(3).to_csv("top3_total_wins.csv", index=False)
 pos_corr.to_frame("corr_with_win_percent").to_csv("corr_with_win_percent.csv")

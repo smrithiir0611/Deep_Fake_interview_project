@@ -11,11 +11,11 @@ This project is based on my earlier basketball dataset analysis (WNBA 2018–202
 5. Collected everything here in one repo.  
 
 ## Key Results
-- **Most Improved Team (2018 → 2022):** Chicago Sky (0.382 → 0.722, +0.340)  
-- **Runner-Ups:** Las Vegas Aces (+0.298), New York Liberty (+0.238)  
-- **Top 3 Teams by Wins:** Connecticut Sun (105), Seattle Storm (105), Las Vegas Aces (103)  
-- **Positive Correlations with Win%:** Wins (0.902953), FG% (0.738814), PPG (0.712392), 3PT% (0.686892), FGM (0.668774)  
-- **Negative Correlations with Win%:** Losses (−0.903176), PF (−0.602896), TOV (−0.337999), OREB (−0.158467), 3PT Attempts (−0.070337)  
+1. The team that showed the biggest improvement from 2018 to 2022 was the Chicago Sky. Their win percentage went from 0.382 to 0.722, which is about a +0.340 jump.  
+2. Close behind them were the Las Vegas Aces (+0.298) and the New York Liberty (+0.238).  
+3. Over the full stretch of five seasons, the Connecticut Sun and Seattle Storm tied for the most wins with 105 each, and the Las Vegas Aces were just behind with 103.  
+4. Looking at stats that connect most strongly with winning, the top ones were wins themselves (0.902953), field goal percentage (0.738814), points per game (0.712392), three-point percentage (0.686892), and field goals made (0.668774).  
+5. On the negative side, losses (−0.903176) were the strongest, followed by personal fouls (−0.602896), turnovers (−0.337999), offensive rebounds (−0.158467) and even three-point attempts (−0.070337), which were linked with weaker win percentages.  
 
 ## Files in This Repo
 - `script.txt` → the final interview script  
